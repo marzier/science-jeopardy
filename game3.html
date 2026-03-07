@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Science Jeopardy – Game 3 (Biology & Genetics)</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#001f3f;
+color:white;
+text-align:center;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+}
+
+th,td{
+border:3px solid white;
+width:160px;
+height:90px;
+}
+
+th{
+background:#111;
+}
+
+td{
+background:#0033cc;
+font-size:26px;
+cursor:pointer;
+}
+
+td:hover{
+background:#0055ff;
+}
+
+#question{
+margin-top:40px;
+font-size:28px;
+width:60%;
+margin-left:auto;
+margin-right:auto;
+}
+
+button{
+font-size:20px;
+margin:10px;
+padding:10px 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Science Jeopardy – Biology & Genetics</h1>
+
+<a href="index.html"><button>Back to Menu</button></a>
+
+<div id="score">Score: 0</div>
+
+<table>
+
+<tr>
+<th>Cells</th>
+<th>DNA</th>
+<th>Heredity</th>
+<th>Mutations</th>
+<th>Evolution</th>
+<th>Traits</th>
+</tr>
+
+<tr>
+<td onclick="ask('q1',100)">100</td>
+<td onclick="ask('q6',100)">100</td>
+<td onclick="ask('q11',100)">100</td>
+<td onclick="ask('q16',100)">100</td>
+<td onclick="ask('q21',100)">100</td>
+<td onclick="ask('q26',100)">100</td>
+</tr>
+
+<tr>
+<td onclick="ask('q2',200)">200</td>
+<td onclick="ask('q7',200)">200</td>
+<td onclick="ask('q12',200)">200</td>
+<td onclick="ask('q17',200)">200</td>
+<td onclick="ask('q22',200)">200</td>
+<td onclick="ask('q27',200)">200</td>
+</tr>
+
+<tr>
+<td onclick="ask('q3',300)">300</td>
+<td onclick="ask('q8',300)">300</td>
+<td onclick="ask('q13',300)">300</td>
+<td onclick="ask('q18',300)">300</td>
+<td onclick="ask('q23',300)">300</td>
+<td onclick="ask('q28',300)">300</td>
+</tr>
+
+<tr>
+<td onclick="ask('q4',400)">400</td>
+<td onclick="ask('q9',400)">400</td>
+<td onclick="ask('q14',400)">400</td>
+<td onclick="ask('q19',400)">400</td>
+<td onclick="ask('q24',400)">400</td>
+<td onclick="ask('q29',400)">400</td>
+</tr>
+
+<tr>
+<td onclick="ask('q5',500)">500</td>
+<td onclick="ask('q10',500)">500</td>
+<td onclick="ask('q15',500)">500</td>
+<td onclick="ask('q20',500)">500</td>
+<td onclick="ask('q25',500)">500</td>
+<td onclick="ask('q30',500)">500</td>
+</tr>
+
+</table>
+
+<div id="question"></div>
+
+<script>
+
+let score=0
+let currentValue=0
+let answer=""
+
+const q={
+
+q1:["Basic unit of life","Cell"],
+q2:["Organelle that contains DNA","Nucleus"],
+q3:["Structure that controls what enters and leaves a cell","Cell membrane"],
+q4:["Cells that contain a nucleus","Eukaryotic cells"],
+q5:["Cells without a nucleus","Prokaryotic cells"],
+
+q6:["Molecule that stores genetic information","DNA"],
+q7:["Segments of DNA that code for traits","Genes"],
+q8:["Structure containing many genes","Chromosome"],
+q9:["DNA instructions used to build these molecules","Proteins"],
+q10:["The twisted ladder shape of DNA","Double helix"],
+
+q11:["Different versions of a gene","Alleles"],
+q12:["Organism with two identical alleles","Homozygous"],
+q13:["Organism with two different alleles","Heterozygous"],
+q14:["Physical expression of genes","Phenotype"],
+q15:["Genetic makeup of an organism","Genotype"],
+
+q16:["Change in a DNA sequence","Mutation"],
+q17:["Mutations in reproductive cells can be","Inherited"],
+q18:["Mutations create new genetic","Variation"],
+q19:["Mutations may change protein","Structure"],
+q20:["Some mutations have no","Effect"],
+
+q21:["Process where better adapted organisms survive","Natural selection"],
+q22:["Trait that improves survival","Adaptation"],
+q23:["Evidence of past life","Fossils"],
+q24:["Differences among individuals in a population","Variation"],
+q25:["Species change over many","Generations"],
+
+q26:["Characteristic passed from parents","Trait"],
+q27:["Traits are influenced by genes and the","Environment"],
+q28:["Traits are controlled by combinations of","Alleles"],
+q29:["Tool used to predict inheritance","Punnett square"],
+q30:["Genes influence growth and","Development"]
+
+}
+
+function ask(id,value){
+
+currentValue=value
+answer=q[id][1]
+
+document.getElementById("question").innerHTML=q[id][0]+"<br><br><button onclick='showAnswer()'>Show Answer</button>"
+
+}
+
+function showAnswer(){
+
+document.getElementById("question").innerHTML+="<br><br><b>"+answer+"</b><br><br><button onclick='correct()'>Correct</button><button onclick='wrong()'>Wrong</button>"
+
+}
+
+function correct(){
+score+=currentValue
+update()
+}
+
+function wrong(){
+score-=currentValue
+update()
+}
+
+function update(){
+document.getElementById("score").innerText="Score: "+score
+document.getElementById("question").innerHTML=""
+}
+
+</script>
+
+</body>
+</html>
