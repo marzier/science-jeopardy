@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Science Jeopardy – Game 4 (Genetics Review)</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#001f3f;
+color:white;
+text-align:center;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+}
+
+th,td{
+border:3px solid white;
+width:160px;
+height:90px;
+}
+
+th{
+background:#111;
+}
+
+td{
+background:#0033cc;
+font-size:26px;
+cursor:pointer;
+}
+
+td:hover{
+background:#0055ff;
+}
+
+#question{
+margin-top:40px;
+font-size:28px;
+width:60%;
+margin-left:auto;
+margin-right:auto;
+}
+
+button{
+font-size:20px;
+margin:10px;
+padding:10px 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Science Jeopardy – Genetics Review</h1>
+
+<a href="index.html"><button>Back to Menu</button></a>
+
+<div id="score">Score: 0</div>
+
+<table>
+
+<tr>
+<th>Genes → Proteins</th>
+<th>Mutations</th>
+<th>Reproduction</th>
+<th>Myostatin</th>
+<th>Selection</th>
+<th>Traits</th>
+</tr>
+
+<tr>
+<td onclick="ask('q1',100)">100</td>
+<td onclick="ask('q6',100)">100</td>
+<td onclick="ask('q11',100)">100</td>
+<td onclick="ask('q16',100)">100</td>
+<td onclick="ask('q21',100)">100</td>
+<td onclick="ask('q26',100)">100</td>
+</tr>
+
+<tr>
+<td onclick="ask('q2',200)">200</td>
+<td onclick="ask('q7',200)">200</td>
+<td onclick="ask('q12',200)">200</td>
+<td onclick="ask('q17',200)">200</td>
+<td onclick="ask('q22',200)">200</td>
+<td onclick="ask('q27',200)">200</td>
+</tr>
+
+<tr>
+<td onclick="ask('q3',300)">300</td>
+<td onclick="ask('q8',300)">300</td>
+<td onclick="ask('q13',300)">300</td>
+<td onclick="ask('q18',300)">300</td>
+<td onclick="ask('q23',300)">300</td>
+<td onclick="ask('q28',300)">300</td>
+</tr>
+
+<tr>
+<td onclick="ask('q4',400)">400</td>
+<td onclick="ask('q9',400)">400</td>
+<td onclick="ask('q14',400)">400</td>
+<td onclick="ask('q19',400)">400</td>
+<td onclick="ask('q24',400)">400</td>
+<td onclick="ask('q29',400)">400</td>
+</tr>
+
+<tr>
+<td onclick="ask('q5',500)">500</td>
+<td onclick="ask('q10',500)">500</td>
+<td onclick="ask('q15',500)">500</td>
+<td onclick="ask('q20',500)">500</td>
+<td onclick="ask('q25',500)">500</td>
+<td onclick="ask('q30',500)">500</td>
+</tr>
+
+</table>
+
+<div id="question"></div>
+
+<script>
+
+let score=0
+let currentValue=0
+let answer=""
+
+const q={
+
+q1:["Genes provide instructions for making these molecules","Proteins"],
+q2:["Proteins help determine an organism’s","Traits"],
+q3:["A gene is a segment of","DNA"],
+q4:["Genes are located on these structures","Chromosomes"],
+q5:["Genes affect traits by controlling which","Proteins are produced"],
+
+q6:["A change in the DNA sequence","Mutation"],
+q7:["Mutations can change the shape of a","Protein"],
+q8:["A mutation may have no effect if the","Protein does not change"],
+q9:["Mutations that occur in reproductive cells can be","Inherited"],
+q10:["Mutations create genetic","Variation"],
+
+q11:["Reproduction involving one parent","Asexual reproduction"],
+q12:["Reproduction involving two parents","Sexual reproduction"],
+q13:["Sexual reproduction increases genetic","Variation"],
+q14:["Asexual reproduction produces genetically","Identical offspring"],
+q15:["Sexual reproduction produces new combinations of","Genes"],
+
+q16:["Protein that limits muscle growth in cattle","Myostatin"],
+q17:["Gene that controls myostatin production","Myostatin gene"],
+q18:["Cattle with weak myostatin protein develop","Larger muscles"],
+q19:["Myostatin works by limiting","Muscle growth"],
+q20:["Different versions of a gene are called","Alleles"],
+
+q21:["Humans breeding animals for desired traits","Artificial selection"],
+q22:["Choosing cattle with large muscles to breed","Selective breeding"],
+q23:["Selection increases the frequency of certain","Gene versions"],
+q24:["Natural selection occurs without","Human involvement"],
+q25:["Selection over generations changes","Populations"],
+
+q26:["Characteristics passed from parents","Traits"],
+q27:["Traits are influenced by genes and the","Environment"],
+q28:["Two versions of a gene inherited from parents","Alleles"],
+q29:["Combination of alleles an organism has","Genotype"],
+q30:["Physical appearance of a trait","Phenotype"]
+
+}
+
+function ask(id,value){
+
+currentValue=value
+answer=q[id][1]
+
+document.getElementById("question").innerHTML=q[id][0]+"<br><br><button onclick='showAnswer()'>Show Answer</button>"
+
+}
+
+function showAnswer(){
+
+document.getElementById("question").innerHTML+="<br><br><b>"+answer+"</b><br><br><button onclick='correct()'>Correct</button><button onclick='wrong()'>Wrong</button>"
+
+}
+
+function correct(){
+score+=currentValue
+update()
+}
+
+function wrong(){
+score-=currentValue
+update()
+}
+
+function update(){
+document.getElementById("score").innerText="Score: "+score
+document.getElementById("question").innerHTML=""
+}
+
+</script>
+
+</body>
+</html>
