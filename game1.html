@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Science Jeopardy – Game 1</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#001f3f;
+color:white;
+text-align:center;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+}
+
+th,td{
+border:3px solid white;
+width:160px;
+height:90px;
+}
+
+th{
+background:#111;
+}
+
+td{
+background:#0033cc;
+font-size:26px;
+cursor:pointer;
+}
+
+td:hover{
+background:#0055ff;
+}
+
+#question{
+margin-top:40px;
+font-size:28px;
+width:60%;
+margin-left:auto;
+margin-right:auto;
+}
+
+button{
+font-size:20px;
+margin:10px;
+padding:10px 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Science Jeopardy – Game 1</h1>
+
+<a href="index.html"><button>Back to Menu</button></a>
+
+<div id="score">Score: 0</div>
+
+<table>
+
+<tr>
+<th>Atoms</th>
+<th>Forces</th>
+<th>Energy</th>
+<th>Weather</th>
+<th>Earth</th>
+<th>Engineering</th>
+</tr>
+
+<tr>
+<td onclick="ask('q1',100)">100</td>
+<td onclick="ask('q6',100)">100</td>
+<td onclick="ask('q11',100)">100</td>
+<td onclick="ask('q16',100)">100</td>
+<td onclick="ask('q21',100)">100</td>
+<td onclick="ask('q26',100)">100</td>
+</tr>
+
+<tr>
+<td onclick="ask('q2',200)">200</td>
+<td onclick="ask('q7',200)">200</td>
+<td onclick="ask('q12',200)">200</td>
+<td onclick="ask('q17',200)">200</td>
+<td onclick="ask('q22',200)">200</td>
+<td onclick="ask('q27',200)">200</td>
+</tr>
+
+<tr>
+<td onclick="ask('q3',300)">300</td>
+<td onclick="ask('q8',300)">300</td>
+<td onclick="ask('q13',300)">300</td>
+<td onclick="ask('q18',300)">300</td>
+<td onclick="ask('q23',300)">300</td>
+<td onclick="ask('q28',300)">300</td>
+</tr>
+
+<tr>
+<td onclick="ask('q4',400)">400</td>
+<td onclick="ask('q9',400)">400</td>
+<td onclick="ask('q14',400)">400</td>
+<td onclick="ask('q19',400)">400</td>
+<td onclick="ask('q24',400)">400</td>
+<td onclick="ask('q29',400)">400</td>
+</tr>
+
+<tr>
+<td onclick="ask('q5',500)">500</td>
+<td onclick="ask('q10',500)">500</td>
+<td onclick="ask('q15',500)">500</td>
+<td onclick="ask('q20',500)">500</td>
+<td onclick="ask('q25',500)">500</td>
+<td onclick="ask('q30',500)">500</td>
+</tr>
+
+</table>
+
+<div id="question"></div>
+
+<script>
+
+let score=0
+let currentValue=0
+let answer=""
+
+const q={
+
+q1:["Smallest unit of an element","Atom"],
+q2:["Two or more atoms chemically bonded","Molecule"],
+q3:["Substance made from two or more elements","Compound"],
+q4:["Particles with negative charge","Electrons"],
+q5:["Center of an atom containing protons and neutrons","Nucleus"],
+
+q6:["Push or pull on an object","Force"],
+q7:["Total force acting on an object","Net force"],
+q8:["Force that pulls objects toward Earth","Gravity"],
+q9:["Unit used to measure force","Newton"],
+q10:["Mass times acceleration equals","Force"],
+
+q11:["Energy stored due to position","Potential energy"],
+q12:["Energy of motion","Kinetic energy"],
+q13:["Heat transfer through direct contact","Conduction"],
+q14:["Heat transfer through moving fluids","Convection"],
+q15:["Heat transfer through electromagnetic waves","Radiation"],
+
+q16:["Large body of air with similar temperature and humidity","Air mass"],
+q17:["Weather patterns measured over many years","Climate"],
+q18:["Instrument that measures air pressure","Barometer"],
+q19:["Instrument that measures wind speed","Anemometer"],
+q20:["Boundary between two air masses","Front"],
+
+q21:["Layer of Earth where we live","Crust"],
+q22:["Liquid layer of Earth beneath the crust","Mantle"],
+q23:["Molten rock beneath Earth's surface","Magma"],
+q24:["Large moving pieces of Earth's crust","Tectonic plates"],
+q25:["Process where rocks break down","Weathering"],
+
+q26:["Process engineers use to solve problems","Engineering design"],
+q27:["Limits on a design","Constraints"],
+q28:["Desired features of a design","Criteria"],
+q29:["First working model of a solution","Prototype"],
+q30:["Improving a design through repeated testing","Iteration"]
+
+}
+
+function ask(id,value){
+
+currentValue=value
+answer=q[id][1]
+
+document.getElementById("question").innerHTML=q[id][0]+"<br><br><button onclick='showAnswer()'>Show Answer</button>"
+
+}
+
+function showAnswer(){
+
+document.getElementById("question").innerHTML+="<br><br><b>"+answer+"</b><br><br><button onclick='correct()'>Correct</button><button onclick='wrong()'>Wrong</button>"
+
+}
+
+function correct(){
+score+=currentValue
+update()
+}
+
+function wrong(){
+score-=currentValue
+update()
+}
+
+function update(){
+document.getElementById("score").innerText="Score: "+score
+document.getElementById("question").innerHTML=""
+}
+
+</script>
+
+</body>
+</html>
