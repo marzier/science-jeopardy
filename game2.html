@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<title>Science Jeopardy – Game 2</title>
+
+<style>
+
+body{
+font-family:Arial;
+background:#001f3f;
+color:white;
+text-align:center;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+}
+
+th,td{
+border:3px solid white;
+width:160px;
+height:90px;
+}
+
+th{
+background:#111;
+}
+
+td{
+background:#0033cc;
+font-size:26px;
+cursor:pointer;
+}
+
+td:hover{
+background:#0055ff;
+}
+
+#question{
+margin-top:40px;
+font-size:28px;
+width:60%;
+margin-left:auto;
+margin-right:auto;
+}
+
+button{
+font-size:20px;
+margin:10px;
+padding:10px 20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<h1>Science Jeopardy – Game 2</h1>
+
+<a href="index.html"><button>Back to Menu</button></a>
+
+<div id="score">Score: 0</div>
+
+<table>
+
+<tr>
+<th>Scientific Tools</th>
+<th>Matter</th>
+<th>Motion</th>
+<th>Energy</th>
+<th>Water & Climate</th>
+<th>Engineering</th>
+</tr>
+
+<tr>
+<td onclick="ask('q1',100)">100</td>
+<td onclick="ask('q6',100)">100</td>
+<td onclick="ask('q11',100)">100</td>
+<td onclick="ask('q16',100)">100</td>
+<td onclick="ask('q21',100)">100</td>
+<td onclick="ask('q26',100)">100</td>
+</tr>
+
+<tr>
+<td onclick="ask('q2',200)">200</td>
+<td onclick="ask('q7',200)">200</td>
+<td onclick="ask('q12',200)">200</td>
+<td onclick="ask('q17',200)">200</td>
+<td onclick="ask('q22',200)">200</td>
+<td onclick="ask('q27',200)">200</td>
+</tr>
+
+<tr>
+<td onclick="ask('q3',300)">300</td>
+<td onclick="ask('q8',300)">300</td>
+<td onclick="ask('q13',300)">300</td>
+<td onclick="ask('q18',300)">300</td>
+<td onclick="ask('q23',300)">300</td>
+<td onclick="ask('q28',300)">300</td>
+</tr>
+
+<tr>
+<td onclick="ask('q4',400)">400</td>
+<td onclick="ask('q9',400)">400</td>
+<td onclick="ask('q14',400)">400</td>
+<td onclick="ask('q19',400)">400</td>
+<td onclick="ask('q24',400)">400</td>
+<td onclick="ask('q29',400)">400</td>
+</tr>
+
+<tr>
+<td onclick="ask('q5',500)">500</td>
+<td onclick="ask('q10',500)">500</td>
+<td onclick="ask('q15',500)">500</td>
+<td onclick="ask('q20',500)">500</td>
+<td onclick="ask('q25',500)">500</td>
+<td onclick="ask('q30',500)">500</td>
+</tr>
+
+</table>
+
+<div id="question"></div>
+
+<script>
+
+let score=0
+let currentValue=0
+let answer=""
+
+const q={
+
+q1:["Tool used to observe very small objects","Microscope"],
+q2:["Tool used to measure temperature","Thermometer"],
+q3:["Tool used to measure mass","Balance"],
+q4:["Tool used to measure liquid volume","Graduated cylinder"],
+q5:["Tool used to measure air pressure","Barometer"],
+
+q6:["Matter that has a definite shape and volume","Solid"],
+q7:["Matter that has volume but takes the shape of its container","Liquid"],
+q8:["Matter with no definite shape or volume","Gas"],
+q9:["Amount of matter in an object","Mass"],
+q10:["Amount of space an object occupies","Volume"],
+
+q11:["Distance divided by time","Speed"],
+q12:["Speed in a specific direction","Velocity"],
+q13:["Change in velocity over time","Acceleration"],
+q14:["Force that slows motion between surfaces","Friction"],
+q15:["Object moving at constant speed has","Balanced forces"],
+
+q16:["Ability to do work","Energy"],
+q17:["Energy stored in food","Chemical energy"],
+q18:["Energy from the Sun","Solar energy"],
+q19:["Energy carried by moving electrons","Electrical energy"],
+q20:["Energy cannot be created or destroyed","Law of conservation of energy"],
+
+q21:["Continuous movement of water on Earth","Water cycle"],
+q22:["Water vapor cooling into liquid","Condensation"],
+q23:["Liquid water turning into vapor","Evaporation"],
+q24:["Water falling from clouds","Precipitation"],
+q25:["Major factor influencing climate","Ocean currents"],
+
+q26:["A possible solution to a problem","Design solution"],
+q27:["Step where engineers test a design","Testing"],
+q28:["Changing a design to improve it","Redesign"],
+q29:["List of requirements for a solution","Design criteria"],
+q30:["Step where engineers identify a problem","Define the problem"]
+
+}
+
+function ask(id,value){
+
+currentValue=value
+answer=q[id][1]
+
+document.getElementById("question").innerHTML=q[id][0]+"<br><br><button onclick='showAnswer()'>Show Answer</button>"
+
+}
+
+function showAnswer(){
+
+document.getElementById("question").innerHTML+="<br><br><b>"+answer+"</b><br><br><button onclick='correct()'>Correct</button><button onclick='wrong()'>Wrong</button>"
+
+}
+
+function correct(){
+score+=currentValue
+update()
+}
+
+function wrong(){
+score-=currentValue
+update()
+}
+
+function update(){
+document.getElementById("score").innerText="Score: "+score
+document.getElementById("question").innerHTML=""
+}
+
+</script>
+
+</body>
+</html>
