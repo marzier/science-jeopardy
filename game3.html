@@ -78,48 +78,48 @@ padding:10px 20px;
 </tr>
 
 <tr>
-<td onclick="ask('q1',100)">100</td>
-<td onclick="ask('q6',100)">100</td>
-<td onclick="ask('q11',100)">100</td>
-<td onclick="ask('q16',100)">100</td>
-<td onclick="ask('q21',100)">100</td>
-<td onclick="ask('q26',100)">100</td>
+<td onclick="ask(this,'q1',100)">100</td>
+<td onclick="ask(this,'q6',100)">100</td>
+<td onclick="ask(this,'q11',100)">100</td>
+<td onclick="ask(this,'q16',100)">100</td>
+<td onclick="ask(this,'q21',100)">100</td>
+<td onclick="ask(this,'q26',100)">100</td>
 </tr>
 
 <tr>
-<td onclick="ask('q2',200)">200</td>
-<td onclick="ask('q7',200)">200</td>
-<td onclick="ask('q12',200)">200</td>
-<td onclick="ask('q17',200)">200</td>
-<td onclick="ask('q22',200)">200</td>
-<td onclick="ask('q27',200)">200</td>
+<td onclick="ask(this,'q2',200)">200</td>
+<td onclick="ask(this,'q7',200)">200</td>
+<td onclick="ask(this,'q12',200)">200</td>
+<td onclick="ask(this,'q17',200)">200</td>
+<td onclick="ask(this,'q22',200)">200</td>
+<td onclick="ask(this,'q27',200)">200</td>
 </tr>
 
 <tr>
-<td onclick="ask('q3',300)">300</td>
-<td onclick="ask('q8',300)">300</td>
-<td onclick="ask('q13',300)">300</td>
-<td onclick="ask('q18',300)">300</td>
-<td onclick="ask('q23',300)">300</td>
-<td onclick="ask('q28',300)">300</td>
+<td onclick="ask(this,'q3',300)">300</td>
+<td onclick="ask(this,'q8',300)">300</td>
+<td onclick="ask(this,'q13',300)">300</td>
+<td onclick="ask(this,'q18',300)">300</td>
+<td onclick="ask(this,'q23',300)">300</td>
+<td onclick="ask(this,'q28',300)">300</td>
 </tr>
 
 <tr>
-<td onclick="ask('q4',400)">400</td>
-<td onclick="ask('q9',400)">400</td>
-<td onclick="ask('q14',400)">400</td>
-<td onclick="ask('q19',400)">400</td>
-<td onclick="ask('q24',400)">400</td>
-<td onclick="ask('q29',400)">400</td>
+<td onclick="ask(this,'q4',400)">400</td>
+<td onclick="ask(this,'q9',400)">400</td>
+<td onclick="ask(this,'q14',400)">400</td>
+<td onclick="ask(this,'q19',400)">400</td>
+<td onclick="ask(this,'q24',400)">400</td>
+<td onclick="ask(this,'q29',400)">400</td>
 </tr>
 
 <tr>
-<td onclick="ask('q5',500)">500</td>
-<td onclick="ask('q10',500)">500</td>
-<td onclick="ask('q15',500)">500</td>
-<td onclick="ask('q20',500)">500</td>
-<td onclick="ask('q25',500)">500</td>
-<td onclick="ask('q30',500)">500</td>
+<td onclick="ask(this,'q5',500)">500</td>
+<td onclick="ask(this,'q10',500)">500</td>
+<td onclick="ask(this,'q15',500)">500</td>
+<td onclick="ask(this,'q20',500)">500</td>
+<td onclick="ask(this,'q25',500)">500</td>
+<td onclick="ask(this,'q30',500)">500</td>
 </tr>
 
 </table>
@@ -172,13 +172,14 @@ q30:["Genes influence growth and","Development"]
 
 }
 
-function ask(id,value){
-
-currentValue=value
-answer=q[id][1]
-
-document.getElementById("question").innerHTML=q[id][0]+"<br><br><button onclick='showAnswer()'>Show Answer</button>"
-
+function ask(cell, id, value) {
+    currentValue = value;
+    answer = q[id][1];
+    document.getElementById("question").innerHTML =
+        q[id][0] + "<br><br><button onclick='showAnswer()'>Show Answer</button>";
+    
+    // Hide the square so it cannot be clicked again
+    cell.style.visibility = "hidden";
 }
 
 function showAnswer(){
