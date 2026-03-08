@@ -1,125 +1,211 @@
 <!DOCTYPE html>
-
 <html>
-
 <head>
-
 <title>Science Jeopardy – Game 4 (Genetics Review)</title>
 
 <style>
-
-body{
-font-family:Arial;
-background:#001f3f;
-color:white;
-text-align:center;
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial;
+  background: #001f3f;
+  color: white;
 }
 
-table{
-margin:auto;
-border-collapse:collapse;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-th,td{
-border:3px solid white;
-width:160px;
-height:90px;
+#backBtn, #resetBtn {
+  position: absolute;
+  top: 10px;
+  font-size: 1.2vw;
+  padding: 8px 15px;
+  cursor: pointer;
+  z-index: 200;
+  font-weight: bold;
+  color: white;
+  background: #0033cc;
+  border: 2px solid white;
+  border-radius: 5px;
 }
 
-th{
-background:#111;
+#backBtn { left: 10px; }
+#resetBtn { right: 10px; }
+
+#teamScores {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 22px;
 }
 
-td{
-background:#0033cc;
-font-size:26px;
-cursor:pointer;
+#teamSelect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0033cc;
+  color: #FFD700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 36px;
+  z-index: 300;
 }
 
-td:hover{
-background:#0055ff;
+#teamSelect button {
+  font-size: 24px;
+  margin: 10px;
+  padding: 10px 20px;
 }
 
-#question{
-margin-top:40px;
-font-size:28px;
-width:60%;
-margin-left:auto;
-margin-right:auto;
+table {
+  border-collapse: collapse;
+  border: 1px solid black;
+  width: 90vw;
+  height: 70vh;
+  table-layout: fixed;
 }
 
-button{
-font-size:20px;
-margin:10px;
-padding:10px 20px;
+th, td {
+  border: 1px solid black;
+  text-transform: uppercase;
+  text-align: center;
+  vertical-align: middle;
+  font-weight: bold;
 }
 
+td, th {
+  background: #0033cc;
+}
+
+td {
+  color: #FF8C00;
+  font-size: 3vw;
+  cursor: pointer;
+}
+
+#question {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #0033cc;
+  color: white;
+  font-size: 4vw;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  text-align: center;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.team-buttons button, #showBtn {
+  font-size: 2vw;
+  margin: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  color: #FF8C00;
+  background: #0033cc;
+  border: 2px solid #FF8C00;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.team-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 10px;
+}
 </style>
-
 </head>
 
 <body>
 
 <h1>Science Jeopardy – Genetics Review</h1>
 
-<a href="index.html"><button>Back to Menu</button></a>
+<button id="backBtn" onclick="window.location.href='index.html'">Back to Menu</button>
+<button id="resetBtn" onclick="resetGame()">Reset Game</button>
 
-<div id="score">Score: 0</div>
+<div id="teamScores"></div>
+
+<div id="teamSelect">
+<div>Select Number of Teams</div>
+<div>
+<button onclick="startGame(2)">2 Teams</button>
+<button onclick="startGame(3)">3 Teams</button>
+<button onclick="startGame(4)">4 Teams</button>
+<button onclick="startGame(5)">5 Teams</button>
+<button onclick="startGame(6)">6 Teams</button>
+</div>
+</div>
 
 <table>
 
 <tr>
-<th>Genes → Proteins</th>
-<th>Mutations</th>
-<th>Reproduction</th>
-<th>Myostatin</th>
-<th>Selection</th>
-<th>Traits</th>
+<th>GENES → PROTEINS</th>
+<th>MUTATIONS</th>
+<th>REPRODUCTION</th>
+<th>MYOSTATIN</th>
+<th>SELECTION</th>
+<th>TRAITS</th>
 </tr>
 
 <tr>
-<td onclick="ask(this,'q1',100)">100</td>
-<td onclick="ask(this,'q6',100)">100</td>
-<td onclick="ask(this,'q11',100)">100</td>
-<td onclick="ask(this,'q16',100)">100</td>
-<td onclick="ask(this,'q21',100)">100</td>
-<td onclick="ask(this,'q26',100)">100</td>
+<td onclick="ask(this,'q1',100)">$100</td>
+<td onclick="ask(this,'q6',100)">$100</td>
+<td onclick="ask(this,'q11',100)">$100</td>
+<td onclick="ask(this,'q16',100)">$100</td>
+<td onclick="ask(this,'q21',100)">$100</td>
+<td onclick="ask(this,'q26',100)">$100</td>
 </tr>
 
 <tr>
-<td onclick="ask(this,'q2',200)">200</td>
-<td onclick="ask(this,'q7',200)">200</td>
-<td onclick="ask(this,'q12',200)">200</td>
-<td onclick="ask(this,'q17',200)">200</td>
-<td onclick="ask(this,'q22',200)">200</td>
-<td onclick="ask(this,'q27',200)">200</td>
+<td onclick="ask(this,'q2',200)">$200</td>
+<td onclick="ask(this,'q7',200)">$200</td>
+<td onclick="ask(this,'q12',200)">$200</td>
+<td onclick="ask(this,'q17',200)">$200</td>
+<td onclick="ask(this,'q22',200)">$200</td>
+<td onclick="ask(this,'q27',200)">$200</td>
 </tr>
 
 <tr>
-<td onclick="ask(this,'q3',300)">300</td>
-<td onclick="ask(this,'q8',300)">300</td>
-<td onclick="ask(this,'q13',300)">300</td>
-<td onclick="ask(this,'q18',300)">300</td>
-<td onclick="ask(this,'q23',300)">300</td>
-<td onclick="ask(this,'q28',300)">300</td>
+<td onclick="ask(this,'q3',300)">$300</td>
+<td onclick="ask(this,'q8',300)">$300</td>
+<td onclick="ask(this,'q13',300)">$300</td>
+<td onclick="ask(this,'q18',300)">$300</td>
+<td onclick="ask(this,'q23',300)">$300</td>
+<td onclick="ask(this,'q28',300)">$300</td>
 </tr>
 
 <tr>
-<td onclick="ask(this,'q4',400)">400</td>
-<td onclick="ask(this,'q9',400)">400</td>
-<td onclick="ask(this,'q14',400)">400</td>
-<td onclick="ask(this,'q19',400)">400</td>
-<td onclick="ask(this,'q24',400)">400</td>
-<td onclick="ask(this,'q29',400)">400</td>
+<td onclick="ask(this,'q4',400)">$400</td>
+<td onclick="ask(this,'q9',400)">$400</td>
+<td onclick="ask(this,'q14',400)">$400</td>
+<td onclick="ask(this,'q19',400)">$400</td>
+<td onclick="ask(this,'q24',400)">$400</td>
+<td onclick="ask(this,'q29',400)">$400</td>
 </tr>
 
 <tr>
-<td onclick="ask(this,'q5',500)">500</td>
-<td onclick="ask(this,'q10',500)">500</td>
-<td onclick="ask(this,'q15',500)">500</td>
-<td onclick="ask(this,'q20',500)">500</td>
-<td onclick="ask(this,'q25',500)">500</td>
-<td onclick="ask(this,'q30',500)">500</td>
+<td onclick="ask(this,'q5',500)">$500</td>
+<td onclick="ask(this,'q10',500)">$500</td>
+<td onclick="ask(this,'q15',500)">$500</td>
+<td onclick="ask(this,'q20',500)">$500</td>
+<td onclick="ask(this,'q25',500)">$500</td>
+<td onclick="ask(this,'q30',500)">$500</td>
 </tr>
 
 </table>
@@ -128,7 +214,8 @@ padding:10px 20px;
 
 <script>
 
-let score=0
+let teamNames = ["Curie","Newton","Darwin","Einstein","Tesla","Galileo"]
+let teams=[]
 let currentValue=0
 let answer=""
 
@@ -172,35 +259,78 @@ q30:["Physical appearance of a trait","Phenotype"]
 
 }
 
-function ask(cell, id, value) {
-    currentValue = value;
-    answer = q[id][1];
-    document.getElementById("question").innerHTML =
-        q[id][0] + "<br><br><button onclick='showAnswer()'>Show Answer</button>";
-    
-    // Hide the square so it cannot be clicked again
-    cell.style.visibility = "hidden";
+function startGame(numTeams){
+teams=[]
+for(let i=0;i<numTeams;i++){
+teams.push({name:teamNames[i],score:0})
+}
+document.getElementById("teamSelect").style.display="none"
+document.getElementById("backBtn").style.display="inline-block"
+document.getElementById("resetBtn").style.display="inline-block"
+updateTeamScores()
+resetBoard()
+}
+
+function updateTeamScores(){
+document.getElementById("teamScores").innerHTML=
+teams.map(t=>`${t.name}: ${t.score}`).join(" | ")
+}
+
+function resetBoard(){
+document.querySelectorAll("td").forEach(c=>c.style.visibility="visible")
+}
+
+function ask(cell,id,value){
+currentValue=value
+answer=q[id][1]
+
+const questionDiv=document.getElementById("question")
+
+questionDiv.innerHTML=
+q[id][0]+"<br><br><button id='showBtn' onclick='showAnswer()'>Show Answer</button>"
+
+questionDiv.style.display="flex"
+
+cell.style.visibility="hidden"
+
+document.getElementById("backBtn").style.display="none"
+document.getElementById("resetBtn").style.display="none"
 }
 
 function showAnswer(){
 
-document.getElementById("question").innerHTML+="<br><br><b>"+answer+"</b><br><br><button onclick='correct()'>Correct</button><button onclick='wrong()'>Wrong</button>"
+const questionDiv=document.getElementById("question")
+const btn=document.getElementById("showBtn")
+if(btn) btn.style.display="none"
 
+let html="<br><br><b>"+answer+"</b><br><br><div class='team-buttons'>"
+
+teams.forEach((team,i)=>{
+html+=`<button onclick="addPoints(${i})">${team.name} +${currentValue}</button>`
+})
+
+html+=`<button onclick="returnToBoard()">Return to Board</button></div>`
+
+questionDiv.innerHTML=html
 }
 
-function correct(){
-score+=currentValue
-update()
+function addPoints(index){
+teams[index].score+=currentValue
+updateTeamScores()
+returnToBoard()
 }
 
-function wrong(){
-score-=currentValue
-update()
+function returnToBoard(){
+document.getElementById("question").style.display="none"
+document.getElementById("backBtn").style.display="inline-block"
+document.getElementById("resetBtn").style.display="inline-block"
 }
 
-function update(){
-document.getElementById("score").innerText="Score: "+score
-document.getElementById("question").innerHTML=""
+function resetGame(){
+document.getElementById("teamSelect").style.display="flex"
+document.getElementById("question").style.display="none"
+document.getElementById("backBtn").style.display="none"
+document.getElementById("resetBtn").style.display="none"
 }
 
 </script>
